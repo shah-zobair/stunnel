@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  annotations:
+  name: stunnel
+spec:
+  source:
+    git:
+#      ref: production
+      uri: https://git-ti.example.com:8443/scm/openshift/stunnel.git
+    sourceSecret:
+      name: bacca
+    type: Git
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rhel7:latest
+        namespace: bac
+  output:
+    to:
+      kind: DockerImage
+      name: docker-registry-lab.sdi.corp.example.com:6555/asa/stunnel:rc
+      pushSecret:
+        name: bacdocker
