@@ -1,0 +1,5 @@
+---
+- name: Do stunnel atomic install on Master nodes
+  hosts: masters
+  roles:
+     - stunnel
